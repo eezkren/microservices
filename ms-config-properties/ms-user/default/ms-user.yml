@@ -7,3 +7,6 @@ spring:
     url: jdbc:h2:mem:testdb
     username: sa
     password:
+security:
+  basic:
+    enabled: false
