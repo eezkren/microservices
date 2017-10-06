@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: rg-gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: ms-config-server
+server:
+  port: 8765
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
