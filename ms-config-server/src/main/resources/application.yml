@@ -5,4 +5,4 @@ spring:
         git:
           uri: https://github.com/isilona/microservices/
           search-paths:
-          - ms-config-properties
+            - "ms-config-properties/{application}/{profile}"
