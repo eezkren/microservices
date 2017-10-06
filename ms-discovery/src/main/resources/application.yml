@@ -1,5 +1,3 @@
-server:
-  port: ${PORT:8761}
 eureka:
   client:
     register-with-eureka: false
