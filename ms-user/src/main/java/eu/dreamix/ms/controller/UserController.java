@@ -6,17 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @RequestMapping(method = RequestMethod.GET, path = "/members")
     public ResponseEntity<?> getAll() {
@@ -29,7 +33,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST, path = "/register")
     public ResponseEntity<?> register(@RequestBody User input) {
 
-       User result = userRepository.save(input);
+        User result = userRepository.save(input);
 
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
