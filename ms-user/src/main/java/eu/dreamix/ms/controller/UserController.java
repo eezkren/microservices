@@ -1,7 +1,7 @@
 package eu.dreamix.ms.controller;
 
 import eu.dreamix.ms.entity.User;
-import eu.dreamix.ms.repository.UserRepository;
+import eu.dreamix.ms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/members")
     public ResponseEntity<?> getAll() {
 
-        Iterable<User> all = userRepository.findAll();
+        Iterable<User> all = userService.findAll();
 
         return new ResponseEntity<Object>(all, HttpStatus.OK);
     }
@@ -33,7 +33,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST, path = "/register")
     public ResponseEntity<?> register(@RequestBody User input) {
 
-        User result = userRepository.save(input);
+        User result = userService.registerUser(input);
 
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }

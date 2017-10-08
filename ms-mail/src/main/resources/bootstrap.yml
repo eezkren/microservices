@@ -19,6 +19,10 @@ spring:
     properties.mail.smtp:
       auth: true
       starttls.enable: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      userCreated: USER_CREATED_TOPIC
 security:
   basic:
     enabled: false
