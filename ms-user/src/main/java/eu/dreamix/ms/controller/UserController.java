@@ -23,18 +23,18 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/members")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<Iterable<User>> getAll() {
 
         Iterable<User> all = userService.findAll();
 
-        return new ResponseEntity<Object>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/register")
-    public ResponseEntity<?> register(@RequestBody User input) {
+    public ResponseEntity<User> register(@RequestBody User input) {
 
         User result = userService.registerUser(input);
 
-        return new ResponseEntity<Object>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
