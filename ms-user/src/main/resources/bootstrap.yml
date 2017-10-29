@@ -8,10 +8,3 @@ spring:
       discovery:
         enabled: true
         service-id: ms-config-server
-  kafka:
-    bootstrap-servers: localhost:9092
-    topic:
-      userCreated: USER_CREATED_TOPIC
-security:
-  basic:
-    enabled: false
