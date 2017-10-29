@@ -11,6 +11,14 @@ spring:
     bootstrap-servers: localhost:9092
     topic:
       userCreated: USER_CREATED_TOPIC
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: username
+    password: password
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
 security:
   basic:
     enabled: false
