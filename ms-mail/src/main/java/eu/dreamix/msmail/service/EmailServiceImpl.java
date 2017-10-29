@@ -20,23 +20,6 @@ public class EmailServiceImpl implements EmailService {
     public MailRepository mailRepository;
 
     @Override
-    public void sendSimpleMessage(Mail input) {
-        try {
-
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(input.getTo());
-            message.setSubject(input.getSubject());
-            message.setText(input.getText());
-
-            mailRepository.save(input);
-            emailSender.send(message);
-        } catch (MailException exception) {
-            exception.printStackTrace();
-        }
-
-    }
-
-    @Override
     public void sendSimpleMessage(UserDto input) {
         try {
 
