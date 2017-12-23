@@ -8,7 +8,8 @@
 - Check
   - http://localhost:8761/
 #### Config server (Spring Cloud Config)
-- Update properties
+- native profile is active reading propertes from local folder
+- Update properties 
   - SET **PATH_TO_MICROSERVICES_PROJECT** in /microservices/ms-config-server/src/main/resources/application.yml
   - SET **YOUR_GMAIL_USERNAME** in /microservices/ms-config-properties/ms-mail/dev/ms-mail.yml
   - SET **YOUR_GMAIL_PASSWORD** in /microservices/ms-config-properties/ms-mail/dev/ms-mail.yml
