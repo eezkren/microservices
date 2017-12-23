@@ -1,3 +1,5 @@
+server:
+  port: 8765
 spring:
   application:
     name: ms-gateway
@@ -6,5 +8,3 @@ spring:
       discovery:
         enabled: true
         service-id: ms-config-server
-server:
-  port: 8765
