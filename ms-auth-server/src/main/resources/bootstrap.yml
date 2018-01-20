@@ -1,0 +1,10 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: ms-auth-server
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: ms-config-server
