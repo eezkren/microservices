@@ -1,4 +1,7 @@
 spring:
+  kafka:
+    consumer:
+      group-id: ms_mail_consumer
   h2:
     console:
       enabled: true
@@ -7,15 +10,11 @@ spring:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
-  kafka:
-    bootstrap-servers: localhost:9092
-    topic:
-      userCreated: USER_CREATED_TOPIC
   mail:
     host: smtp.gmail.com
     port: 587
-    username: username
-    password: password
+    username: YOUR_GMAIL_USERNAME
+    password: YOUR_GMAIL_PASSWORD
     properties.mail.smtp:
       auth: true
       starttls.enable: true
