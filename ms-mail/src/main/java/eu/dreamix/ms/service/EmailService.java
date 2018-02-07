@@ -1,6 +1,6 @@
-package eu.dreamix.msmail.service;
+package eu.dreamix.ms.service;
 
-import eu.dreamix.msmail.entity.dto.UserDto;
+import eu.dreamix.ms.entity.dto.UserDto;
 
 public interface EmailService {
 

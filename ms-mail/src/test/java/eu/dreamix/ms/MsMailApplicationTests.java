@@ -1,4 +1,4 @@
-package eu.dreamix.msmail;
+package eu.dreamix.ms;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,9 +1,9 @@
-package eu.dreamix.msmail.service;
+package eu.dreamix.ms.service;
 
 
-import eu.dreamix.msmail.entity.Mail;
-import eu.dreamix.msmail.entity.dto.UserDto;
-import eu.dreamix.msmail.repository.MailRepository;
+import eu.dreamix.ms.entity.Mail;
+import eu.dreamix.ms.entity.dto.UserDto;
+import eu.dreamix.ms.repository.MailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;

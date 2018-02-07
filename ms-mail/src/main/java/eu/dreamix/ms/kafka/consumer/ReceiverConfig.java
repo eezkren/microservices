@@ -1,6 +1,6 @@
-package eu.dreamix.msmail.kafka.consumer;
+package eu.dreamix.ms.kafka.consumer;
 
-import eu.dreamix.msmail.entity.dto.UserDto;
+import eu.dreamix.ms.entity.dto.UserDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,13 +22,17 @@ public class ReceiverConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
+    @Value("${spring.kafka.consumer.group-id}")
+    private String consumerGroupId;
+
+
     @Bean
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "UserCreatedConsumer");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, consumerGroupId);
 
         return props;
     }

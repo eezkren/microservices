@@ -1,4 +1,4 @@
-package eu.dreamix.msmail.entity.dto;
+package eu.dreamix.ms.entity.dto;
 
 public class UserDto {
 

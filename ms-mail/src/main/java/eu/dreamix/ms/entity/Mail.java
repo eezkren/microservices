@@ -1,4 +1,4 @@
-package eu.dreamix.msmail.entity;
+package eu.dreamix.ms.entity;
 
 import org.hibernate.validator.constraints.Email;
 

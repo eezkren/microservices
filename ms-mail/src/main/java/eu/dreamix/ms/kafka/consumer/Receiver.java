@@ -1,7 +1,7 @@
-package eu.dreamix.msmail.kafka.consumer;
+package eu.dreamix.ms.kafka.consumer;
 
-import eu.dreamix.msmail.entity.dto.UserDto;
-import eu.dreamix.msmail.service.EmailService;
+import eu.dreamix.ms.entity.dto.UserDto;
+import eu.dreamix.ms.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
