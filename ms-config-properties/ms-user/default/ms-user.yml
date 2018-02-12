@@ -9,4 +9,4 @@ spring:
     password:
 security:
   basic:
-    enabled: false
+    enabled: true
