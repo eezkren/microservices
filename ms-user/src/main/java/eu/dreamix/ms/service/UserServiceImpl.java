@@ -30,6 +30,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean deleteUser(String username) {
+        Long deletedId = userRepository.deleteUserByUsername(username);
+        return deletedId > 0;
+    }
+
+    @Override
     public Iterable<User> findAll() {
         return userRepository.findAll();
     }
