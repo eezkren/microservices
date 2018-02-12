@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -21,6 +22,7 @@ import java.io.IOException;
 
 @Configuration
 @EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceConfig extends ResourceServerConfigurerAdapter {
 
     // The DefaultTokenServices bean provided at the AuthorizationConfig
@@ -49,8 +51,7 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 // when restricting access to 'Roles' you must remove the "ROLE_" part role
                 // for "ROLE_USER" use only "USER"
-                .antMatchers("/register").permitAll()
-                .antMatchers("/members").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/members").permitAll()
                 // restricting all access to authenticated users
                 .antMatchers("/**").authenticated();
     }
