@@ -1,4 +1,4 @@
-package eu.dreamix.ms;
+package eu.dreamix.ms.request;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -63,11 +63,11 @@ public class RelayTokenFilter extends ZuulFilter {
                 final HttpServletRequest req = ctx.getRequest();
                 String grantType = ctx.getRequest().getParameter("grant_type");
 
-                final String refreshToken = extractRefreshToken(req);
 
                 if ("refresh_token".equals(grantType)) {
                     logger.info("getting refresh_token");
 
+                    final String refreshToken = extractRefreshToken(req);
                     final Map<String, String[]> param = new HashMap<String, String[]>();
                     param.put("refresh_token", new String[]{refreshToken});
 
@@ -84,9 +84,7 @@ public class RelayTokenFilter extends ZuulFilter {
         } else {
 
             logger.info("getting " + ctx.getRequest().getRequestURI());
-
             final HttpServletRequest req = ctx.getRequest();
-
             final String accessToken = extractAccessToken(req);
 
             if (accessToken != null) {

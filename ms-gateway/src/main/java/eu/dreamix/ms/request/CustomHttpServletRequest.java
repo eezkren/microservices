@@ -1,4 +1,4 @@
-package eu.dreamix.ms;
+package eu.dreamix.ms.request;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

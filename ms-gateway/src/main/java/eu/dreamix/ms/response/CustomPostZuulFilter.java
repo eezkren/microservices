@@ -1,4 +1,4 @@
-package eu.dreamix.ms;
+package eu.dreamix.ms.response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,15 +44,12 @@ public class CustomPostZuulFilter extends ZuulFilter {
         try {
             final InputStream is = ctx.getResponseDataStream();
             String responseBody = IOUtils.toString(is, "UTF-8");
-            if (responseBody.contains(refreshTokenCookieName) && responseBody.contains("access_token")) {
+            if (responseBody.contains(refreshTokenCookieName) && responseBody.contains(accessTokenCookieName)) {
                 final Map<String, Object> responseMap = mapper.readValue(responseBody,
                         new TypeReference<Map<String, Object>>() {
                         });
                 final String refreshToken = responseMap.get(refreshTokenCookieName).toString();
-//                responseBody = mapper.writeValueAsString(responseMap);
-
                 final String accessToken = responseMap.get(accessTokenCookieName).toString();
-//                responseBody = mapper.writeValueAsString(responseMap);
 
                 final Cookie refreshTokenCookie = new Cookie(refreshTokenCookieName, refreshToken);
                 refreshTokenCookie.setPath(ctx.getRequest().getContextPath() + tokenPath);
