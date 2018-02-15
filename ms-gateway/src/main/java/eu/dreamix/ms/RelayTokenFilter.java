@@ -4,6 +4,7 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,18 @@ import java.util.Map;
 public class RelayTokenFilter extends ZuulFilter {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Value("${oauth.token-path}")
+    private String tokenPath;
+
+    @Value("${oauth.refresh-token.cookie-name}")
+    private String refreshTokenCookieName;
+
+    @Value("${oauth.access-token.cookie-name}")
+    private String accessTokenCookieName;
+
+    @Value("${oauth.client-secret}")
+    private String clientSecret;
 
     @Override
     public String filterType() {
@@ -39,12 +52,12 @@ public class RelayTokenFilter extends ZuulFilter {
         final RequestContext ctx = RequestContext.getCurrentContext();
 
         logger.info("in zuul filter " + ctx.getRequest().getRequestURI());
-        if (ctx.getRequest().getRequestURI().contains("oauth/token")) {
+        if (ctx.getRequest().getRequestURI().equals(tokenPath)) {
 
             byte[] encoded;
 
             try {
-                encoded = Base64.encode("trusted-app:secret".getBytes("UTF-8"));
+                encoded = Base64.encode(clientSecret.getBytes("UTF-8"));
                 ctx.addZuulRequestHeader("Authorization", "Basic " + new String(encoded));
 
                 final HttpServletRequest req = ctx.getRequest();
@@ -53,7 +66,6 @@ public class RelayTokenFilter extends ZuulFilter {
                 final String refreshToken = extractRefreshToken(req);
 
                 if ("refresh_token".equals(grantType)) {
-
                     logger.info("getting refresh_token");
 
                     final Map<String, String[]> param = new HashMap<String, String[]>();
@@ -62,9 +74,7 @@ public class RelayTokenFilter extends ZuulFilter {
                     ctx.setRequest(new CustomHttpServletRequest(req, param));
                 }
                 if ("password".equals(grantType)) {
-
                     logger.info("getting password");
-
                 }
 
             } catch (UnsupportedEncodingException e1) {
@@ -92,7 +102,7 @@ public class RelayTokenFilter extends ZuulFilter {
         final Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equalsIgnoreCase("refresh_token")) {
+                if (cookies[i].getName().equalsIgnoreCase(refreshTokenCookieName)) {
                     return cookies[i].getValue();
                 }
             }
@@ -104,7 +114,7 @@ public class RelayTokenFilter extends ZuulFilter {
         final Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equalsIgnoreCase("access_token")) {
+                if (cookies[i].getName().equalsIgnoreCase(accessTokenCookieName)) {
                     return cookies[i].getValue();
                 }
             }

@@ -3,3 +3,12 @@ spring:
     bootstrap-servers: localhost:9092
     topic:
       userCreated: USER_CREATED_TOPIC
+oauth:
+  client-secret: trusted-app:secret
+  token-path: /auth/oauth/token
+  refresh-token:
+    max-age: 2592000 # 30 days
+    cookie-name: refresh_token
+  access-token:
+    max-age: 86400 # 1 day
+    cookie-name: access_token
