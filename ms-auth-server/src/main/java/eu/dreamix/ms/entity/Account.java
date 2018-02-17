@@ -16,14 +16,28 @@ public class Account implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @Column(unique = true)
     private String username;
+
     @JsonIgnore
     private String password;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;
-    private boolean accountNonExpired, accountNonLocked, credentialsNonExpired, enabled;
+
+    @Column
+    private boolean accountNonExpired;
+
+    @Column
+    private boolean accountNonLocked;
+
+    @Column
+    private boolean credentialsNonExpired;
+
+    @Column
+    private boolean enabled;
 
     public Account() {
         this.accountNonExpired = true;
