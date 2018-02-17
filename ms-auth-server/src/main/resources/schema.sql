@@ -19,7 +19,7 @@ INSERT INTO oauth_client_details
  refresh_token_validity, additional_information, autoapprove)
 VALUES
   ('trusted-app', 'secret', 'read,write',
-   'password,client_credentials,refresh_token', NULL, 'ROLE_TRUSTED_CLIENT', 10000, 30000, NULL, TRUE);
+   'password,client_credentials,refresh_token', NULL, NULL, 86400, 2592000, NULL, TRUE);
 
 DROP TABLE IF EXISTS oauth_client_token;
 CREATE TABLE oauth_client_token (
