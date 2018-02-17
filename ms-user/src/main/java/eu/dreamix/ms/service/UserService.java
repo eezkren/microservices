@@ -6,7 +6,7 @@ public interface UserService {
 
     User registerUser(User input);
 
-    boolean deleteUser(String username);
-
     Iterable<User> findAll();
+
+    User findById(Long id);
 }
