@@ -22,7 +22,7 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @RequestMapping(method = RequestMethod.GET, path = "/members/{id}")
-    public ResponseEntity<User> findByUsername(@PathVariable("id") Long id) {
+    public ResponseEntity<User> findByUserId(@PathVariable("id") Long id) {
         User result = userService.findById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
